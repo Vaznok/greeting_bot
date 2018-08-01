@@ -4,7 +4,7 @@
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
         <file>./logs/${byDay}.log</file>
         <encoder>
-            <pattern>Type:%5p Time: %d{HH:mm:ss} Class: %c{2}:%L Method: %M Message: %m%n</pattern>
+            <pattern>%5p %d{HH:mm:ss} Class: %c{2}:%L Method: %M Message: %m%n</pattern>
         </encoder>
     </appender>
 
