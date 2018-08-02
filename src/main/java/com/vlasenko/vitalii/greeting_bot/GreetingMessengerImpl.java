@@ -12,6 +12,7 @@ public class GreetingMessengerImpl implements GreetingMessenger {
 
     static {
         Locale.setDefault(Locale.ENGLISH);
+
     }
 
     private Locale locale;
