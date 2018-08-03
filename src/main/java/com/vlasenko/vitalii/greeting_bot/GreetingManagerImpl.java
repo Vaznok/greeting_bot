@@ -5,8 +5,8 @@ import org.slf4j.LoggerFactory;
 
 import java.time.LocalTime;
 
-public class GreetingHandlerImpl implements GreetingHandler {
-    private static Logger logger = LoggerFactory.getLogger(GreetingHandlerImpl.class.getSimpleName());
+public class GreetingManagerImpl implements GreetingManager {
+    private final static Logger logger = LoggerFactory.getLogger(GreetingManagerImpl.class.getSimpleName());
 
     static final LocalTime MORNING_START = LocalTime.parse("06:00:00");
     static final LocalTime MORNING_END = LocalTime.parse("09:00:00");
@@ -20,22 +20,22 @@ public class GreetingHandlerImpl implements GreetingHandler {
     static final LocalTime NIGHT_START = LocalTime.parse("23:00:00");
     static final LocalTime NIGHT_END = LocalTime.parse("06:00:00");
 
-    private GreetingMessenger greetingMessenger;
+    private GreetingMessenger messenger;
 
-    GreetingHandlerImpl(GreetingMessenger greetingMessenger) {
-        this.greetingMessenger = greetingMessenger;
+    GreetingManagerImpl(GreetingMessenger messenger) {
+        this.messenger = messenger;
     }
 
     @Override
     public String getGreetingByTime(LocalTime time) {
         if(isTimeInRange(time, MORNING_START, MORNING_END)) {
-            return greetingMessenger.getMorningGreeting();
+            return messenger.getMorningGreeting();
         } else if (isTimeInRange(time, DAY_START, DAY_END)) {
-            return greetingMessenger.getDayGreeting();
+            return messenger.getDayGreeting();
         } else if (isTimeInRange(time, EVENING_START, EVENING_END)) {
-            return greetingMessenger.getEveningGreeting();
+            return messenger.getEveningGreeting();
         } else if (isTimeInRangeForNight(time, NIGHT_START, NIGHT_END)) {
-            return greetingMessenger.getNightGreeting();
+            return messenger.getNightGreeting();
         } else {
             logger.warn("Unacceptable behavior for greeting process when time=" + time);
             throw new IllegalStateException("Unacceptable behavior for greeting process when time=" + time);
