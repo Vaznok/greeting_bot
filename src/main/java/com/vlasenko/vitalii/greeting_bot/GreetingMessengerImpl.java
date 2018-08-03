@@ -8,11 +8,10 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class GreetingMessengerImpl implements GreetingMessenger {
-    private static Logger logger = LoggerFactory.getLogger(GreetingMessengerImpl.class.getSimpleName());
+    private final static Logger logger = LoggerFactory.getLogger(GreetingMessengerImpl.class.getSimpleName());
 
     static {
         Locale.setDefault(Locale.ENGLISH);
-
     }
 
     private Locale locale;
@@ -24,7 +23,7 @@ public class GreetingMessengerImpl implements GreetingMessenger {
         this.messages = ResourceBundle.getBundle("i18n.messages", this.locale);
     }
 
-    public GreetingMessengerImpl(Locale locale) {
+    GreetingMessengerImpl(Locale locale) {
         this.locale = Objects.requireNonNull(locale);
         this.messages = ResourceBundle.getBundle("i18n.messages", this.locale);
     }
